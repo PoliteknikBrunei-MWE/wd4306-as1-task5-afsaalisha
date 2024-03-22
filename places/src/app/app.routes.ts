@@ -1,41 +1,57 @@
+
 import { Routes } from '@angular/router';
+import { TabsPage } from './tabs/tabs.page';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'auth',
     pathMatch: 'full',
   },
   {
-    path: 'places',
-    loadComponent: () => import('./places/places.page').then( m => m.PlacesPage)
+    path: 'auth',
+    loadComponent: () => import('./auth/auth.page').then((m) => m.AuthPage),
+  },
+  // {
+  //   path: 'places',
+  //   loadComponent: () =>
+  //     import('./places/places.page').then((m) => m.PlacesPage),
+  // },
+  {
+    path: 'place-detail',
+    loadComponent: () =>
+      import('./places/place-details/place-details.page').then(
+        (m) => m.PlaceDetailsPage
+      ),
   },
   {
     path: 'offers',
-    loadComponent: () => import('./offers/offers.page').then( m => m.OffersPage)
+    loadComponent: () =>
+      import('./offers/offers.page').then((m) => m.OffersPage),
   },
   {
     path: 'tabs',
-    loadComponent: () => import('./tabs/tabs.page').then( m => m.TabsPage)
+    component: TabsPage,
+    children: [
+      {
+        path: 'places',
+        loadComponent: () =>
+          import('./places/places.page').then((m) => m.PlacesPage),
+      },
+      {
+        path: 'offers',
+        loadComponent: () =>
+          import('./offers/offers.page').then((m) => m.OffersPage),
+      },
+    ],
   },
   {
-    path: 'auth',
-    loadComponent: () => import('./auth/auth.page').then( m => m.AuthPage)
-  },  {
-    path: 'place-details',
-    loadComponent: () => import('./place-details/place-details.page').then( m => m.PlaceDetailsPage)
+    path: 'places',
+    redirectTo: '/tabs/places',
+    pathMatch: 'full',
   },
   {
-    path: 'place-details',
-    loadComponent: () => import('./place-details/place-details.page').then( m => m.PlaceDetailsPage)
+    path: 'tabs',
+    loadComponent: () => import('./tabs/tabs.page').then((m) => m.TabsPage),
   },
-  {
-    path: 'place-details',
-    loadComponent: () => import('./places/place-details/place-details.page').then( m => m.PlaceDetailsPage)
-  },
-
 ];
