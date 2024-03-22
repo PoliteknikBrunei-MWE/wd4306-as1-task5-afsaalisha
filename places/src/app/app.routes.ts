@@ -25,5 +25,17 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () => import('./auth/auth.page').then( m => m.AuthPage)
+  },  {
+    path: 'place-details',
+    loadComponent: () => import('./place-details/place-details.page').then( m => m.PlaceDetailsPage)
   },
+  {
+    path: 'place-details',
+    loadComponent: () => import('./place-details/place-details.page').then( m => m.PlaceDetailsPage)
+  },
+  {
+    path: 'place-details',
+    loadComponent: () => import('./places/place-details/place-details.page').then( m => m.PlaceDetailsPage)
+  },
+
 ];
